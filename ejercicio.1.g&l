@@ -1,0 +1,18 @@
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,               
+//         NOTIFY=KC03A48                                               
+//*        TYPRUN=SCAN                                                  
+/*----------------------------------------------------------------------
+//PASO00   EXEC PGM=IEFBR14                UTILITARIO QUE DEVUELVE CERO 
+//DELAR    DD DSN=KC03A48.ZOS2023.SEQ02,DISP=(MDD,DELETE)               
+//*---------------------------------------------------------------------
+//PASO01   EXEC PGM=IEFBR14                                             
+//CREAR    DD DSN=KC03A48.ZOS2023.SEQ02,                                
+//         DISP=(NEW,CATLG,DELETE),                                     
+//         RECFM=FB,                            ESTO ES FIJO Y BLOQUEADO
+//         DSORG=PS,                       ESTO ES UN ARCHIVO SECUENCIAL
+//         DCB=(LRECL=80,BLKSIZE=3120),         LONGITUD DE REIGISTRO 80
+//         SPACE=(CYL,(2,1),RLSE)                  LE PUSE DOS CYLINDROS
+//*                    (COMANDO RLSE SIRVE PARA NO DESPERDICIAR ESPACIO)
+//*---------------------------------------------------------------------
+//*           BORRO SEQ02,CREO OTRO DATASET LLAMADO SEQ02               
+//*---------------------------------------------------------------------
