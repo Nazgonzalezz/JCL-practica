@@ -1,0 +1,16 @@
+//KC03A48E JOB 1,                                                       
+//         REGION=0M,                                                   
+//*    INDICA LA CANTIDAD DE MEMORIA QUE VA A UTILIZAR EL JOB EN SU EJEC
+//         NOTIFY=&SYSUID,                                              
+//*    INDICA EL USUARIO DE TSO AL QUE EL SISTEMA ENVIARA UN MENSAJE    
+//         MSGCLASS=T,                                                  
+//*    INDICA LA COLA DE SALIDA DE LOS MENSAJES DEL SISTEMA             
+//         MSGLEVEL=(1,1),                                              
+//*    INDICA EL TIPO DE MENSAJES QUE HA DE IMPRIMIR EL SISTEMA         
+//         CLASS=A,                                                     
+//*    INDICA LA COLA DE ENTRADA DONDE ESPERARA EL TRABAJO              
+//         TYPRUN=SCAN                                                  
+//*    INDICA EL TIPO DE EJECUCION DEL JOB(ANALIZA EL JOB)              
+//*---------------------------------------------------------------------
+//*          PARAMETROS DE PALABRA CLAVE EN LA SENTENCIA JOB            
+//*---------------------------------------------------------------------
