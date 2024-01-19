@@ -1,5 +1,5 @@
 //KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,               
-//         NOTIFY=KC03A48                                               
+//         NOTIFY=&SYSUID                                               
 //*        TYPRUN=SCAN                                                  
 /*----------------------------------------------------------------------
 //PASO00   EXEC PGM=IEFBR14                UTILITARIO QUE DEVUELVE CERO 
