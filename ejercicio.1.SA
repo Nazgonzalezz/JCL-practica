@@ -1,0 +1,41 @@
+/*EJERCICIOS DE SISTEMAS ACTIVOS*/
+
+1) Escribir un JCL simple con tres pasos (Solo los tres pasos)
+Que deben ejecutarse siempre
+Línea o tarjeta de JOB EJE0001A
+Linea EXEC o PASO01 , que llama un programa EJE001B1
+Linea EXEC o PASO02 , que llama un programa SORT
+Linea EXEC o PASO03 , que llama un programa IDCAMS
+Agregar PARM fecha a PASO01
+Agregar RESTART y TYPRUN=SCAN al JOB
+
+//KC03A48E JOB REGION=0M,CLASS=A,MSGCLASS=A,NOTIFY=&SYSUID,
+//*        TYPRUN=SCAN,
+//         RESTART=PASO02
+//
+//PASO01   EXEC PGM=EJE001B1,PARM='10032000'
+//PASO02   EXEC PGM=SORT 
+//PASO03   EXEC PGM=IDCAMS
+
+
+---------------------------------------------------------------------------------------
+2)Escribir u n JCL con cuatro pasos ,COND=(4,GE) (GE = mayor o igual)
+Donde a partir del segundo paso cada paso se ejecuta si los pasos anteriores terminaron
+con RETONO < 4
+Línea o tarjeta de JOB EJE0002B
+Linea EXEC o PASO01 , que llama un programa EJE001B1
+Linea EXEC o PASO02 , que llama un programa SORT
+Linea EXEC o PASO03 , que llama un programa IDCAMS
+Linea EXEC o PASO04 , que llama un programa EJE001B2
+
+//KC03A48E JOB REGION=0M,CLASS=A,MSGCLASS=A,NOTIFY=&SYSUID,
+//*        TYPRUN=SCAN,
+//         RESTART=PASO02
+//
+//PASO01   EXEC PGM=EJE001B1,PARM='10032000'
+//PASO02   EXEC PGM=SORT,COND=(4,GE)
+//PASO03   EXEC PGM=IDCAMS
+//PASO04   EXEC PGM=EJE001B2
+
+
+
