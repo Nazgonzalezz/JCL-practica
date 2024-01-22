@@ -120,6 +120,37 @@ Al archivo de salida ya existente , lo pisa
           SKIP(200) -
           COUNT(100)
 /*
+/----------------------------------------------------------------------------
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*  
+//PASO01A  EXEC PGM=IEFBR14
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSUDUMP DD SYSOUT=*
+//SYSDBOUT DD SYSOUT=*
+//TRANOMSD DD DSN=ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA,
+//         DISP=(NEW,CATGL,CATGL),
+//         DCB=(RECFM=FB,LRECL=567,BLKSIZE=0,DSORG=PS),
+//         SPACE=(CYL,(1,1),RLSE) 
+//
+//*-------------------------------------------------------------------------
+
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//PASO210  EXEC PGM=IDCAMS
+//FIN01    DD DSN=ARCHIVO.PARA.MOVIMIENTOS,
+//         DIPS=(NEW,CATGL,DELETE),
+//         DCB=(RECFM=FB,LRECL=25,BLKSIZE=0,DSORG=PS),
+//         SPACE=(TRK,(5,5),RLSE) 
+//ENTRADA  DD *
+0000000AAAAAAAAAAAAAAAAAA
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+    REPRO INFILE(ENTRADA) -
+          OUTFILE(FIN01)
+//
+
 
 
 
