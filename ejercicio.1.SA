@@ -37,5 +37,29 @@ Linea EXEC o PASO04 , que llama un programa EJE001B2
 //PASO03   EXEC PGM=IDCAMS,COND=(4,GE,PASO02)
 //PASO04   EXEC PGM=EJE001B2,COND=(4,GE,PASO03)
 
+--------------------------------------------------------------------------------------
+Escribir un JCL para un JOB que se llama JOB100AL, TIENE un paso
+El paso ejecuta el programa IDCAMS que copia
+el archivo de entrada
+‘ARCHIVO.DE.ACUMULADOS.MES04’
+Al archivo de salida ya existente , lo pisa
+‘ARCHIVO.DE.ACUMULADOS.MES04.BK’
+
+
+
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//    
+//PASO01   EXEC PGM=IDECAMS
+//INT01    DD DSN=ARCHIVO.DE.ACUMULADOS.MES04,DISP=SHR
+//OUT01    DD DSN=ARCHIVO.DE.ACUMULADOS.MES04.BK,DISP=OLD 
+//SYSPRINT DD SYSSOUT=*
+//SYSIN    DD *
+    REPRO INFILE(INT01)
+          OUTFILE(OUT01)
+/*
+
+
+
 
 
