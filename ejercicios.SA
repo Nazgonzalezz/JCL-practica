@@ -179,7 +179,35 @@ Al archivo de salida ya existente , lo pisa
            OUTFILE(OUT01)
 //
 //*-------------------------------------------------------------------------
-
-
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*
+//PASO01   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD * 
+     LISTCAT ENTRIES(ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA)ALL 
+/*
+//*
+//IF PASO01.RC EQ 0
+//PASOSI   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT = *
+//SYSIN    DD *
+    ALTER  ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA -
+        NEWNAME(ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA)
+/*
+//*
+//ELSE 
+//PASONO   EXEC PGM=IEFBR14
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSUDUMP DD SYSOUT=*
+//SYSDBOUT DD SYSOUT=*
+//TRANOMSD DD DSN=ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA,
+//         DISP=(NEW,CATGL,CATGL),
+//         DCB=(RECFM=FB,LRECL=567,BLKSIZE=0,DSORG=PS),
+//         SPACE=(CYL,(1,1),RLSE) 
+// ENDIF
+//
+//*--------------------------------------------------------------------
 
 
