@@ -150,6 +150,35 @@ Al archivo de salida ya existente , lo pisa
     REPRO INFILE(ENTRADA) -
           OUTFILE(FIN01)
 //
+//*-----------------------------------------------------------------------
+//* Teniendo el archivo renombrarlo
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//PASORENO EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+  ALTER ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA -
+  NEWNAME(ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA.ANTERIOR)
+//
+
+//*----------------------------------------------------------------------------
+//* Teniendo el archivo
+//*INICIALIZARLO (BORRAR LOS DATOS QUE TIENE SIN BORRAR EL ARCHIVO)
+//*PASOINI Ejecuta el programa IDECAMS que al archivo
+//*‘ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA’ DEBE QUEDAR SIN REGISTROS
+//*
+//KC03A48E JOB 1,REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*
+//PASORENO EXEC PGM=IDCAMS
+//INP01    DD DUMMY
+//OUT01    DD DSN=ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA, DISP=OLD
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+     REPRO INFILE(INP01) -
+           OUTFILE(OUT01)
+//
+//*-------------------------------------------------------------------------
 
 
 
