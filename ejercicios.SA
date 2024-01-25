@@ -140,7 +140,7 @@ Al archivo de salida ya existente , lo pisa
 //*        ,TYPRUN=SCAN 
 //PASO210  EXEC PGM=IDCAMS
 //FIN01    DD DSN=ARCHIVO.PARA.MOVIMIENTOS,
-//         DIPS=(NEW,CATGL,DELETE),
+//         DIPS=(NEW,CATLG,DELETE),
 //         DCB=(RECFM=FB,LRECL=25,BLKSIZE=0,DSORG=PS),
 //         SPACE=(TRK,(5,5),RLSE) 
 //ENTRADA  DD *
