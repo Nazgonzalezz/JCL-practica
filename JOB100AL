@@ -14,8 +14,8 @@
 //OUT01    DD DSN=ARCHIVO.DE.ACUMULADOS.MES04.BK,DISP=OLD  
 //*
 //SYSIN    DD *
-    REPRO INFILE(INT01)
-          OUTFILE(OUT01)
+    REPRO INFILE(INT01) -
+          OUTFILE(OUT01) -
 /*
 //
 //**************************************************************
