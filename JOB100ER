@@ -1,0 +1,37 @@
+//**************************************************************
+//*PASO01: ejecuta el programa IDCAMS que borra el archivo     *
+//*PASO02: ejecuta el programa IDCAMS que copia los primeros   *
+//* 100 reg del archivo                                        *
+//**************************************************************
+//JOB100ER JOB REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,
+//         NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*-------------------------------------------------------------    
+//PASO01   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//*
+//SYSIN    DD *
+      DELETE (ARCH.MOVIM.PERIODO.P032022.PRUEBA) PURGE 
+      IF LASTCC = 8 THEN SET MAXCC = 0
+/*
+//*-------------------------------------------------------------
+//PASO02   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSSOUT=*
+//*
+//INT01    DD DSN=ARCH.MOVIM.PERIODO.P032022,DISP=SHR
+//OUT01    DD DSN=ARCH.MOVIM.PERIODO.P032022.PRUEBA,
+//         DISP=(NEW,CATLG,DELETE),
+//         DCB=(RECFM=FB,LRECL=350,BLKSIZE=0,DSORG=PS),
+//         SPACE=(TRK,(5,5),RLSE) 
+//*
+//SYSIN    DD *
+    REPRO INFILE(INT01) -
+          OUTFILE(OUT01) -
+          COUNT(100)
+/*
+//
+//**************************************************************
+//*                      COMENTARIOS                           *
+//**************************************************************
+//*COUNT(X): permite grabar X registros                        *
+//**************************************************************
