@@ -59,4 +59,6 @@
 //***********************************************************
 //*&&=sig que el archivo que use va a ser temporal, solo    *
 //*   va a existir mientras se ejecute el job               *
+//*OUTREC FIELDS(3,14) : "3" desde la posicion numero tres, *
+//* catorce lugares                                         *
 //***********************************************************
