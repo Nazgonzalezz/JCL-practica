@@ -1,0 +1,55 @@
+//***********************************************************
+//* Job: Se fija si el archivo tiene registros              *
+//* "ARCHIVO.PARA.DEPOSITOS.DE.LA.S01"                      *
+//* si tiene datos va a retornar 0 el programa, sino retorna*
+//*4                                                        *
+//*                                                         *
+//*PASOSI: se ecuentra dentro del if,si tiene registros va a*
+//*ejecutar el programa                                     *
+//*COBOL001                                                 *
+//*                                                         *
+//*PASONO: se encuentra en el else si no tiene registros va *
+//*a retornas por la SYSOUT                                 *
+//* que no tiene datos                                      *
+//***********************************************************
+//JOB28002 JOB REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,
+//         NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*----------------------------------------------------------
+//PASO01   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//*
+//ENTRADA  DD DSN=ARCHIVO.PARA.DEPOSITOS.DE.LA.S01,DISP=SHR
+//SALIDA   DUMMY
+//SYSIN    DD *
+      REPRO INFILE(ENTRADA) -
+            OUTFILE(SALIDA) -
+            COUN(1)
+//*-----------------------------
+//IF VACIO2.RC EQ 0 THEN
+//PASOSI   EXEC PGM=COBOL001
+//ARCH01   DD DSN=ARCHIVO.PARA.DEPOSITOS.DE.LA.S01,DISP=SH
+//*----------------------------
+//ELSE    
+//PASONO   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//*
+//SALIDA   DD SYSOUT=*
+//ENTRADA  DD *
+        archivo sin datos
+/*
+//SYSIN    DD *
+    REPRO INFILE(ENTRADA) -
+          OUTFILE(SALIDA)
+/*
+//ENDIF
+//*----------------------------
+//
+//***********************************************************
+//*                   COMENTARIOS                           *
+//***********************************************************
+//*IF VACIO2.RC EQ 0 THEN: se va a ejecutar si el retorno es*
+//*igual a cero                                             *
+//*                                                         *
+//*ELSE: se va a ejecutar si el retorno no es igual a cero  *
+//***********************************************************
