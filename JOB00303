@@ -1,12 +1,12 @@
-//***********************************************************
-//*PASO01:utilizo el sor para hacer una copiar del archivo  *
-//*      pero con la direcencia de que cada registro que    *
-//*      tenga este nuevo archivo va a tener registros que  *
-//*      valgan 1                                           *
-//*PASO02:sumo todos los registros de ese nuevo archivo para*
-//*       saber la cantidad de registros que tenia mi arhivo*
-//*PASO03:mando la cantidad de registros por una terminal   *
-//***********************************************************
+//************************************************************
+//*PASO01:utilizo el sor para hacer una copia  del archivo   *
+//*      pero con la direcencia de que cada registro que     *
+//*      tenga este nuevo archivo va a tener registros que   *
+//*      valgan 1                                            *
+//*PASO02:sumo todos los registros de ese nuevo archivo para *
+//*       saber la cantidad de registros que tenia mi archivo*
+//*PASO03:mando la cantidad de registros por una terminal    *
+//************************************************************
 //JOB00303 JOB REGION=0M,CLASS=A,MSGCLASS=A,NOTIFY=&SYSUID
 //*        ,TYPRUN=SCAN
 //*----------------------------------------------------------
