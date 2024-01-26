@@ -1,0 +1,34 @@
+//***********************************************************
+//*PASO210 Crear un archivo sin datos con PGM=IEFBR14       *
+//*Ejecuta el programa IEFBR14 que crea el archivo          *
+//*‘ARCHIVO.PARA.DEPOSITOS.DE.LA.SEMANA’                    *
+//*                                                         *
+//*PASO210 Crear un archivo con datos con PGM=IDCAMS        *
+//*Ejecuta el programa IDCAMS que crea el archivo           *
+//*‘ARCHIVO.PARA.MOVIMIENTOS’                               *
+//***********************************************************
+//JOB200DA JOB REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,
+//         NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*----------------------------------------------------------
+//PASO210  EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//*
+//SALIDA   DD DSN=ARCHIVO.PARA.MOVIMIENTOS,
+//         DIPS=(NEW,CATLG,DELETE),
+//         DCB=(RECFM=FB,LRECL=25,BLKSIZE=0,DSORG=PS),
+//         SPACE=(TRK,(5,5),RLSE) 
+//ENTRADA  DD *
+      0000000AAAAAAAAAAAAAAAAAA
+/*
+//*
+//SYSIN    DD *
+    REPRO INFILE(ENTRADA) -
+          OUTFILE(SALIDA)
+/*
+//
+//***********************************************************
+//*                     COMENTARIOS                         *
+//***********************************************************
+//*
+//***********************************************************
