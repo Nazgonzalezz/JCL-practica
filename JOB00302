@@ -1,0 +1,35 @@
+//*******************************************************************
+//*PASO01:Este JCL selecciona en el archivo salida1 los registros   *
+//*que comiencen con “AMBA” y en el archivo salida2 el resto de los *
+//*registros                                                        *
+//*******************************************************************
+//JOB00302 JOB REGION=0M,CLASS=A,MSGCLASS=A,NOTIFY=&SYSUID
+//*        ,TYPRUN=SCAN
+//*------------------------------------------------------------------
+//PASO01   EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=* 
+//SORTIN   DD DSN=ARCHI.ENTRADA,DISP=SHR
+//*
+//SALIDA1  DD DSN=ARCHI.SALIDA1,DISP=(NEW,CATLG,DELETE),
+//         DCB=(RECFM=FB,LRECL=29,BLKSIZE=0,DSORG=PS),
+//         SPACE=(TRK,(1,1),RLSE) 
+//*
+//SALIDA2  DD DSN=ARCHI.SALIDA2,DISP=(NEW,CATLG,DELETE),
+//         DCB=(RECFM=FB,LRECL=29,BLKSIZE=0,DSORG=PS),
+//         SPACE=(TRK,(1,1),RLSE) 
+//*
+//SYSIN    DD *
+      SORT FIELDS=COPY
+      OUTFIL FNAMES=SALIDA1,INCLUDE=(1,4,CH,EQ,C'AMBA')
+      OUTFIL FNAMES=SALIDA2,INCLUDE=(1,4,CH,NE,C'AMBA')
+      END
+/*
+//
+//********************************************************************
+//*                      COMENTARIOS                                 *
+//********************************************************************
+//*SORT FIELDS=COPY:Comando para copiar                              *
+//*OUTFIL FNAMES=SALIDA1,INCLUDE=(1,4,CH,EQ,C'AMBA'):Comando para    * 
+//*OUTFIL FNAMES=SALIDA2,INCLUDE=(1,4,CH,NE,C'AMBA'): Comando para   *
+//*separar otro tipo de registros y direccionar esa salida           *
+//********************************************************************
