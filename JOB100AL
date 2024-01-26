@@ -1,0 +1,26 @@
+//**************************************************************
+//*PASO01:copia el archivo de entrada                          *
+//* ‘ARCHIVO.DE.ACUMULADOS.MES04’ al archivo de salida ya      *
+//* existente ‘ARCHIVO.DE.ACUMULADOS.MES04.BK’                 *
+//**************************************************************
+//JOB100AL JOB REGION=0M,CLASS=A,MSGCLASS=A,MSGLEVEL=1,
+//          NOTIFY=&SYSUID                                              
+//*        ,TYPRUN=SCAN 
+//*-------------------------------------------------------------
+//PASO01   EXEC PGM=IDECAMS
+//SYSPRINT DD SYSSOUT=*
+//*
+//INT01    DD DSN=ARCHIVO.DE.ACUMULADOS.MES04,DISP=SHR
+//OUT01    DD DSN=ARCHIVO.DE.ACUMULADOS.MES04.BK,DISP=OLD  
+//*
+//SYSIN    DD *
+    REPRO INFILE(INT01)
+          OUTFILE(OUT01)
+/*
+//
+//**************************************************************
+//*                      COMENTARIOS                           *
+//**************************************************************
+//*OLD: cuando lo abre para escritura pisa lo que tenia antes  *
+//*(borra todo lo anterior, y empieza el archivo desde cero)   *
+//**************************************************************
