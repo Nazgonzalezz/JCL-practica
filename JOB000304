@@ -73,4 +73,7 @@
 //*OUTREC FIELDS=(1,10,C'N'): dede la posicion 1; diez         *
 //*elementos,despues de estos diez elementos copio un 'N' al   *
 //*final                                                       *
+//*                                                            *
+//*OUTREC FIELDS:Nos van a permitir "diseñar" el registro de   *
+//*salida                                                      *
 //**************************************************************
