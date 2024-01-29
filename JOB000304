@@ -69,4 +69,8 @@
 //*nombre. El sistema asume que los ficheros descritos en las  *
 //*DD sin nombre son continuación del descrito en la DD con    *
 //*nombre                                                      *
+//*                                                            *
+//*OUTREC FIELDS=(1,10,C'N'): dede la posicion 1; diez         *
+//*elementos,despues de estos diez elementos copio un 'N' al   *
+//*final                                                       *
 //**************************************************************
