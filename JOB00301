@@ -1,11 +1,12 @@
 //***********************************************************
-//*Job que ordena por primeras tres posiciones, y suma las  *
+//*JCL que ordena por primeras tres posiciones, y suma las  *
 //*siguientes 7 posiciones del archivo                      *
 //***********************************************************
 //JOB00301 JOB REGION=0M,CLASS=A,MSGCLASS=A,NOTIFY=&SYSUID
 //*        ,TYPRUN=SCAN
 //*----------------------------------------------------------
 //PASO01   EXEC PGM=SORT
+//SYSPRINT DD SYSOUT=*
 //SYSOUT   DD SYSOUT=* 
 //*
 //SORTIN   DD DSN=ARCHI.ENTRADA,DISP=SHR
@@ -24,6 +25,11 @@
 //***********************************************************
 //*SORT FIELDS: Comando para ordenar por primeras tres      *
 //*posiciones                                               *
+//*                                                         *
 //*SUM FIELDS: Comando para sumar las siguientes 7          *
 //*posiciones                                               *
+//*                                                         *
+//*ZD Decimal con signo                                     *
+//*                                                         *
+//*PS: archivo secuencial                                   *
 //***********************************************************
