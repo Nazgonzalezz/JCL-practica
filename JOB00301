@@ -32,4 +32,13 @@
 //*ZD Decimal con signo                                     *
 //*                                                         *
 //*PS: archivo secuencial                                   *
+//*                                                         *
+//*SORT FIELDS=(1,3,CH,A): (desde la posicion 1;            *
+//*tres elementos; caracteres, ordenados de manera          *
+//*ascendente)                                              *
+//*                                                         *
+//*FORMAT=ZD:Decimal con signo                              *
+//*                                                         *
+//*SYSOUT:Describe las características de un fichero de     * 
+//*salida cuya trascripción va a efectuar el JES            *
 //***********************************************************
