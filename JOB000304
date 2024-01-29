@@ -13,6 +13,7 @@
 //*        ,TYPRUN=SCAN
 //*----------------------------------------------------------
 //PASO01   EXEC PGM=SORT
+//SYSPRINT DD SYSOUT=*
 //SYSOUT   DD SYSOUT=* 
 //*
 //SORTIN   DD DSN=MOVI.POR.SUCURSAL,DISP=SHR
