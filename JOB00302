@@ -29,8 +29,14 @@
 //*                      COMENTARIOS                                 *
 //********************************************************************
 //*SORT FIELDS=COPY:Comando para copiar                              *
+//*                                                                  *
 //*OUTFIL FNAMES=SALIDA1,INCLUDE=(1,4,CH,EQ,C'AMBA'):Comando para    * 
 //*separar un tipo de registro y direccionar esa salida              *
+//*                                                                  *
 //*OUTFIL FNAMES=SALIDA2,INCLUDE=(1,4,CH,NE,C'AMBA'): Comando para   *
 //*separar otro tipo de registros y direccionar esa salida           *
+//*                                                                  *
+//*EQ: igual a                                                       *
+//*                                                                  *
+//*NE: distinto                                                      *
 //********************************************************************
