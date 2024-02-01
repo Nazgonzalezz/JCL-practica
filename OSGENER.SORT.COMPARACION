@@ -55,20 +55,36 @@ SELEC      4,3,PZ,26,5
                    
 /*
 //*---------------------------------------------------------------------
-//PASO03   EXEC PGM=IDECAMS
-//SYSPRINT DD SYSSOUT=*
-//*
-//INTPUT   DD DSN=RBD.SO.SECU.FSO404S,DISP=SHR
-//         DD DSN=RBD.SO.SECU.FSO404S.B,DISP=SHR
-//OUTPUT   DD DSN=FILE3.DEPOSITO.XXX,DISP=(NEW,CATLG,DELETE),
-//         DCB=(RECFM=FB,LRECL=60,BLKSIZE=0,DSORG=PS),
-//         SPACE=(TRK,(5,5),RLSE)
-//*
-//*
-//SYSIN    DD *
-    REPRO INFILE(INTPUT) -
-          OUTFILE(OUTPUT) -
+//PASOCOMP  EXEC PGM=IEBCOMPR      
+//SYSPRINT  DD  SYSOUT=*    
+//SYSOUT    DD  SYSOUT=*   
+//SYSUT1    DSN=ARBP.SO.SECU.FSO404S,DISP=SHR
+//SYSUT2    DSN=ARBP.SO.SECU.FSO404T,DISP=SHR                                    
+//SYSIN     DD  DUMMY 
+//*                                                  
+//PAIF1     IF PASOCOMP.RQ EQ 0 THEN
+//PASOSI    EXEC PGM=IDCAMS   
+//SYSPRINT  DD  SYSOUT=*  
+//SALIDA    DD  SYSOUT=*                                                 
+//ENTRADA   DD *
+Son Iguales
+/*                                            
+//SYSIN     DD *                                                        
+       REPRO INFILE(ENTRADA) - 
+	     OUTFILE(SALIDA)    
 /*
+//          ELSE
+//PASONO    EXEC PGM=IDCAMS 
+//SYSPRINT  DD  SYSOUT=*   
+//SALIDA    DD  SYSOUT=*                                                  
+//ENTRADA   DD *
+Son Distintos
+/*                                             
+//SYSIN     DD *                                                        
+       REPRO INFILE(ENTRADA) - 
+	     OUTFILE(SALIDA)    
+/* 
+//PASOEND   ENDIF
 //
 
 
