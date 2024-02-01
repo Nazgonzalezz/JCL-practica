@@ -54,42 +54,22 @@ SELEC      4,3,PZ,26,5
                    26:4,3,PD,TO=ZD,LENGTH=5)
                    
 /*
-/PASO0070 EXEC PGM=SORT
-//SYSPRINT DD SYSOUT=*
-//SYSOUT   DD SYSOUT=* 
+//*---------------------------------------------------------------------
+//PASO03   EXEC PGM=IDECAMS
+//SYSPRINT DD SYSSOUT=*
 //*
-//SORTIN   DD DSN=ARBP.SO.SECU.FSO403S,DISP=SHR
-//SORTOUT  DD DSN=ARBP.SO.SECU.FSO404S,
-//         DISP=(NEW,CATLG,DELETE),
-//         SPACE=(CYL,(50,10),RLSE),
-//         DCB=(RECFM=FB,LRECL=30,BLKSIZE=0),
-//         UNIT=SYSDA
+//INTPUT   DD DSN=RBD.SO.SECU.FSO404S,DISP=SHR
+//         DD DSN=RBD.SO.SECU.FSO404S.B,DISP=SHR
+//OUTPUT   DD DSN=FILE3.DEPOSITO.XXX,DISP=(NEW,CATLG,DELETE),
+//         DCB=(RECFM=FB,LRECL=60,BLKSIZE=0,DSORG=PS),
+//         SPACE=(TRK,(5,5),RLSE)
+//*
 //*
 //SYSIN    DD *
-    SORT FIELDS=COPY
-    OUTREC FIELDS=(1:1,3,       
-                   4:C';',
-
-                   5:199,2,PD,TO=ZD,LENGTH=3,
-                   8:C';',
-
-                   9:217,2,PD,TO=ZD,LENGTH=3,
-                   12:C';',
-
-                   13:219,2,PD,TO=ZD,LENGTH=3,
-                   16:C';',
-
-                   17:221,4,
-                   21:C';',
-
-                   22:225,2,PD,TO=ZD,LENGTH=3,
-                   25:C';',
-                
-                   26:4,3,PD,TO=ZD,LENGTH=5)
-                   
+    REPRO INFILE(INTPUT) -
+          OUTFILE(OUTPUT) -
 /*
-//*---------------------------------------------------------------------
-
+//
 
 
 
