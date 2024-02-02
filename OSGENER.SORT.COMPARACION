@@ -1,7 +1,28 @@
+//**********************************************************************
+//*PASO01:Borro los archivos:                                          *
+//*	ARBD.SO.SECU.FSO404S                                           *
+//* 	ARBD.SO.SECU.FSO404S.B  	                               *
+//*                                                                    *
+//*PASO02:Ejecuto el OSGENER para modificar el archivo                 *
+//*                                                                    *
+//*PASO03:Ejecuto el SOR para modificar el archivo                     *
+//*                                                                    *
+//*PASOCOMP: Comparo los archivos que se crearon en el OSGENER y el    *
+//*SORT. Si son iguales significa que hicieron los mismos cambios al   *
+//*archivo, y retorna "son iguales" sino retorna "Son Distintos"       *         
+//**********************************************************************
 //KC03A48E JOB REGION=0M,CLASS=A,MSGCLASS=A,NOTIFY=&SYSUID              
 //*        ,TYPRUN=SCAN                                                 
 //*---------------------------------------------------------------------
-//PASO01   EXEC PGM=OSGENER,COND=(A,LT)                                 
+//PASO01   EXEC PGM=IDCAMS    
+//SYSPRINT  DD  SYSOUT=*       
+//SYSIN     DD *                 
+  DEL ARBD.SO.SECU.FSO404S  
+  DEL ARBD.SO.SECU.FSO404S.B  
+  SET MAXCC=0                  
+/* 
+//*---------------------------------------------------------------------
+//PASO02   EXEC PGM=OSGENER,COND=(A,LT)                                 
 //SYSLST   DD SYSOUT=*                                                  
 //*                                                                     
 //SYSUT1   DD DSN=ARBD.SO.SECU.FSO403S,DISP=SHR                         
@@ -20,7 +41,7 @@ SELEC      225,2,PZ,22,3/';',25
 SELEC      4,3,PZ,26,5
 /*
 //*---------------------------------------------------------------------
-/PASO02    EXEC PGM=SORT
+/PASO03    EXEC PGM=SORT,COND=(A,LT)
 //SYSPRINT DD SYSOUT=*
 //SYSOUT   DD SYSOUT=* 
 //*
@@ -35,31 +56,25 @@ SELEC      4,3,PZ,26,5
     SORT FIELDS=COPY
     OUTREC FIELDS=(1:1,3,       
                    4:C';',
-
                    5:199,2,PD,TO=ZD,LENGTH=3,
                    8:C';',
-
                    9:217,2,PD,TO=ZD,LENGTH=3,
                    12:C';',
-
                    13:219,2,PD,TO=ZD,LENGTH=3,
                    16:C';',
-
                    17:221,4,
                    21:C';',
-
                    22:225,2,PD,TO=ZD,LENGTH=3,
                    25:C';',
-                
                    26:4,3,PD,TO=ZD,LENGTH=5)
-                   
 /*
 //*---------------------------------------------------------------------
-//PASOCOMP  EXEC PGM=IEBCOMPR      
+//PASOCOMP  EXEC PGM=IEBCOMPR,COND=(A,LT)     
 //SYSPRINT  DD  SYSOUT=*    
 //SYSOUT    DD  SYSOUT=*   
-//SYSUT1    DSN=ARBP.SO.SECU.FSO404S,DISP=SHR
-//SYSUT2    DSN=ARBP.SO.SECU.FSO404T,DISP=SHR                                    
+//*
+//SYSUT1    DSN=ARBD.SO.SECU.FSO404S,DISP=SHR
+//SYSUT2    DSN=ARBD.SO.SECU.FSO404S.B,DISP=SHR                                    
 //SYSIN     DD  DUMMY 
 //*                                                  
 //PAIF1     IF PASOCOMP.RQ EQ 0 THEN
@@ -67,7 +82,7 @@ SELEC      4,3,PZ,26,5
 //SYSPRINT  DD  SYSOUT=*  
 //SALIDA    DD  SYSOUT=*                                                 
 //ENTRADA   DD *
-Son Iguales
+    Son Iguales
 /*                                            
 //SYSIN     DD *                                                        
        REPRO INFILE(ENTRADA) - 
@@ -86,9 +101,27 @@ Son Distintos
 /* 
 //PASOEND   ENDIF
 //
-
-
-
-
-
-
+//**********************************************************************************************************************
+//*                                                   COMENTARIOS                                                      *                        
+//**********************************************************************************************************************
+//*Primer selec: desde la posición 1; 3 elementos; lo pego en la posición 1; pego ‘;’ en la posición 4                 *
+//*  SELEC      1 , 3 ,   , 1 /  ';' , 4                                                                               *
+//*                                                                                                                    *
+//*Segundo selec:desde la posición 199, 2 elementos;PZ;lo pego en la posición 5; LENGTH=3;pego’;’ en la posicion 8     *
+//*  SELEC      199 , 2 , PZ  , 5      , 3 / '; '  , 8                                                                 *
+//*                                                                                                                    *
+//*Tercer selec:desde la posición 217;2 elementos;PZ;lo pego en la posición 9; LENGTH=3;pego ‘;’ en la posicion 12     *
+//*  SELEC      217 , 2 , PZ  , 9      ,  3 / ';'  ,12                                                                 *
+//*                                                                                                                    *
+//*Cuarto selec:desde la posición 219;2 elementos;PZ;lo pego en la posición 13; LENGTH=3;pego ‘;’ en la posicion 16    *
+//*  SELEC      219 , 2 , PZ  , 13    , 3  / ';'  , 16                                                                 *
+//*                                                                                                                    *
+//*Quinto selec: desde la posición 221;4 elementos;lo pego en la 17;pego ‘;’ en la posición 25                         *
+//*  SELEC      221 , 4 ,       , 17  /  ';' , 21                                                                      *
+//*                                                                                                                    *
+//*Sexto selec:desde la posición 225; 2 elementos; PZ; lo pego en la posición 22; LENGTH=3;pego ‘;’ en la posicion 25  *
+//*  SELEC      225,  2 , PZ , 22      , 3 / ';' , 25                                                                  *
+//*                                                                                                                    *
+//*Séptimo selec: desde la posición 4;3 elementos;PZ;lo pego en la posición 26; LENGTH=5                               *
+//*  SELEC      4    ,  3 , PZ , 26     , 5                                                                            *
+//**********************************************************************************************************************
