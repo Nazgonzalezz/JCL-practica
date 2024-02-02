@@ -34,22 +34,16 @@ SELEC      4,3,PZ,26,5
     SORT FIELDS=COPY
     OUTREC FIELDS=(1:1,3,       
                    4:C';',
-
                    5:199,2,PD,TO=ZD,LENGTH=3,
                    8:C';',
-
                    9:217,2,PD,TO=ZD,LENGTH=3,
                    12:C';',
-
                    13:219,2,PD,TO=ZD,LENGTH=3,
                    16:C';',
-
                    17:221,4,
                    21:C';',
-
                    22:225,2,PD,TO=ZD,LENGTH=3,
                    25:C';',
-                
                    26:4,3,PD,TO=ZD,LENGTH=5)
                    
 /*
